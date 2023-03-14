@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { BASE_URI } from "../utils/helper";
 
 const Navbar = (props) => {
   const [navbarOpen, setNavbarOpen] = useState(false);
@@ -17,11 +18,7 @@ const Navbar = (props) => {
   const handleLogout = async () => {
     localStorage.clear();
     setUser({});
-    await axios.post(
-      "http://localhost:5000/api/v1/logout",
-      {},
-      { withCredentials: true }
-    );
+    await axios.post(`${BASE_URI}/logout`, {}, { withCredentials: true });
   };
 
   return (

@@ -5,6 +5,7 @@ import { Navbar } from "../components/Navbar";
 import { Footers } from "../components/Footers";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_URI } from "../utils/helper";
 
 const { Sider, Content } = Layout;
 
@@ -15,18 +16,15 @@ const DashboardAdmin = () => {
 
   useEffect(() => {
     const fetchAdminData = async () => {
-      const res = await axios.get(
-        "http://localhost:5000/api/v1/admin/children",
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      const res = await axios.get(`${BASE_URI}/admin/children`, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
       setData(res.data.children);
     };
 
     const fetchNGOData = async () => {
-      const res = await axios.get("http://localhost:5000/api/v1/admin/users", {
+      const res = await axios.get(`${BASE_URI}/admin/users`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });

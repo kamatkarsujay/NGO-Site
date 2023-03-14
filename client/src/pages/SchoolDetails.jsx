@@ -5,6 +5,7 @@ import axios from "axios";
 import { Navbar } from "../components/Navbar";
 import { Footers } from "../components/Footers";
 import { useNavigate, useParams } from "react-router-dom";
+import { BASE_URI } from "../utils/helper";
 
 const { Sider, Content } = Layout;
 
@@ -17,18 +18,15 @@ const SchoolDetails = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(
-        `http://localhost:5000/api/v1/admin/school/${params.id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Accept-Encoding": "gzip, deflate, sdch",
-          },
-          withCredentials: true,
-        }
-      );
+      const res = await axios.get(`${BASE_URI}/admin/school/${params.id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Accept-Encoding": "gzip, deflate, sdch",
+        },
+        withCredentials: true,
+      });
       setData(res.data.school);
     };
     fetchData();
@@ -37,7 +35,7 @@ const SchoolDetails = () => {
   const updateSchool = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/v1/admin/school/${params.id}`,
+        `${BASE_URI}/admin/school/${params.id}`,
         {
           name: editingChild.name,
           schemes: editingChild.schemes,
@@ -60,7 +58,7 @@ const SchoolDetails = () => {
 
   const deleteSchool = async () => {
     await axios
-      .delete(`http://localhost:5000/api/v1/admin/school/${params.id}`, {
+      .delete(`${BASE_URI}/admin/school/${params.id}`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })

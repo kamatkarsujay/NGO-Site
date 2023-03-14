@@ -5,6 +5,7 @@ import axios from "axios";
 import { Navbar } from "../components/Navbar";
 import { Footers } from "../components/Footers";
 import { useNavigate, useParams } from "react-router-dom";
+import { BASE_URI } from "../utils/helper";
 
 const { Sider, Content } = Layout;
 
@@ -17,18 +18,15 @@ const AddSchemeForm = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(
-        `http://localhost:5000/api/v1/child/${params.id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Accept-Encoding": "gzip, deflate, sdch",
-          },
-          withCredentials: true,
-        }
-      );
+      const res = await axios.get(`${BASE_URI}/child/${params.id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Accept-Encoding": "gzip, deflate, sdch",
+        },
+        withCredentials: true,
+      });
       setData(res.data.child);
     };
     fetchData();
@@ -37,7 +35,7 @@ const AddSchemeForm = () => {
   const addSchemes = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/v1/admin/child/${params.id}`,
+        `${BASE_URI}/admin/child/${params.id}`,
         {
           name: editingChild.name,
           age: editingChild.age,
@@ -63,7 +61,7 @@ const AddSchemeForm = () => {
 
   const deleteChild = async () => {
     await axios
-      .delete(`http://localhost:5000/api/v1/admin/child/${params.id}`, {
+      .delete(`${BASE_URI}/admin/child/${params.id}`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })

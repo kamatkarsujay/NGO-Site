@@ -6,6 +6,7 @@ import { Navbar } from "../components/Navbar";
 import { Footers } from "../components/Footers";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_URI } from "../utils/helper";
 
 const { Sider, Content } = Layout;
 
@@ -15,7 +16,7 @@ const ChildList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get("http://localhost:5000/api/v1/children", {
+      const res = await axios.get(`${BASE_URI}/children`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });

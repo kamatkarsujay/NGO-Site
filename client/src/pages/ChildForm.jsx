@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form, Input, Button, Select, Typography } from "antd";
 import axios from "axios";
+import { BASE_URI } from "../utils/helper";
 
 const ChildForm = () => {
   const [name, setName] = useState("");
@@ -10,7 +11,7 @@ const ChildForm = () => {
   const addChild = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/addChild",
+        `${BASE_URI}/addChild`,
         {
           name,
           age,

@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { Navbar } from "../components/Navbar";
 import { Footers } from "../components/Footers";
+import { BASE_URI } from "../utils/helper";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/register",
+        `${BASE_URI}/register`,
         {
           name,
           email,
