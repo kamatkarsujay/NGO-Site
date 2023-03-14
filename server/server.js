@@ -18,7 +18,9 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: "https://ngositereact.netlify.app",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
     credentials: true,
+    allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
   })
 );
 
