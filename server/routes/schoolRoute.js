@@ -10,16 +10,12 @@ const {
 
 const router = express.Router();
 
-router
-  .route("/admin/addSchool")
-  .post(isAuthenticatedUser, authorizeRoles("admin"), addSchool);
-router
-  .route("/admin/schools")
-  .get(isAuthenticatedUser, authorizeRoles("admin"), getAllSchools);
+router.route("/admin/addSchool").post(authorizeRoles("admin"), addSchool);
+router.route("/admin/schools").get(authorizeRoles("admin"), getAllSchools);
 router
   .route("/admin/school/:id")
-  .get(isAuthenticatedUser, authorizeRoles("admin"), getSchool)
-  .put(isAuthenticatedUser, authorizeRoles("admin"), updateSchool)
-  .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteSchool);
+  .get(authorizeRoles("admin"), getSchool)
+  .put(authorizeRoles("admin"), updateSchool)
+  .delete(authorizeRoles("admin"), deleteSchool);
 
 module.exports = router;
