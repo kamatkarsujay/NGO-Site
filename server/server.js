@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://ngositereact.netlify.app/",
+    origin: "*",
     credentials: true,
   })
 );
