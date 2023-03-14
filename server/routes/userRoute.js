@@ -20,16 +20,18 @@ router.route("/login").post(loginUser);
 
 router.route("/logout").post(logout);
 
-router.route("/me").get(getUserDetails);
+router.route("/me").get(isAuthenticatedUser, getUserDetails);
 
-router.route("/password/update").put(updatePassword);
+router.route("/password/update").put(isAuthenticatedUser, updatePassword);
 
-router.route("/admin/users").get(authorizeRoles("admin"), getAllUser);
+router
+  .route("/admin/users")
+  .get(isAuthenticatedUser, authorizeRoles("admin"), getAllUser);
 
 router
   .route("/admin/user/:id")
-  .get(authorizeRoles("admin"), getSingleUser)
-  .put(authorizeRoles("admin"), updateUserRole)
-  .delete(authorizeRoles("admin"), deleteUser);
+  .get(isAuthenticatedUser, authorizeRoles("admin"), getSingleUser)
+  .put(isAuthenticatedUser, authorizeRoles("admin"), updateUserRole)
+  .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
 
 module.exports = router;
