@@ -15,7 +15,12 @@ process.on("uncaughtException", (err) => {
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://ngositereact.netlify.app/",
+    credentials: true,
+  })
+);
 
 connectDatabase();
 
