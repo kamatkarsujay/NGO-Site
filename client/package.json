@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "proxy": "https://ngositeservice.onrender.com/api/v1",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.0.1",
