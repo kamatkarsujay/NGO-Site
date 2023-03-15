@@ -21,9 +21,6 @@ const AddSchemeForm = () => {
       const res = await axios.get(`${BASE_URI}/child/${params.id}`, {
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Accept-Encoding": "gzip, deflate, sdch",
         },
         withCredentials: true,
       });
