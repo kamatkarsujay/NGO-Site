@@ -162,10 +162,10 @@ const AddSchemeForm = () => {
                   </Form.Item>
                   <Form.Item name="gender" label="Gender">
                     <Select
-                      placeholder="Select child's age"
-                      onChange={(e) =>
+                      placeholder="Select child's gender"
+                      onChange={(value) =>
                         setEditingChild((pre) => {
-                          return { ...pre, gender: e.target.value };
+                          return { ...pre, gender: value };
                         })
                       }
                       defaultValue={editingChild.gender}
