@@ -85,6 +85,8 @@ const ChildDetails = () => {
             onClick={(item) => {
               navigate(item.key);
             }}
+            defaultSelectedKeys={["/childlist"]}
+            defaultOpenKeys={["/childlist"]}
             items={[
               {
                 label: "Dashboard",
