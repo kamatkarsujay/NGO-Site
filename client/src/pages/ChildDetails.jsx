@@ -98,6 +98,11 @@ const ChildDetails = () => {
                 icon: <BarsOutlined />,
                 key: "/childlist",
               },
+              {
+                label: "School List",
+                icon: <BarsOutlined />,
+                key: "/schoolList",
+              },
             ]}
           ></Menu>
         </Sider>

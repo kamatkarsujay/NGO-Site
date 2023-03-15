@@ -86,6 +86,11 @@ const ChildList = () => {
                 icon: <BarsOutlined />,
                 key: "/childlist",
               },
+              {
+                label: "School List",
+                icon: <BarsOutlined />,
+                key: "/schoolList",
+              },
             ]}
           ></Menu>
         </Sider>

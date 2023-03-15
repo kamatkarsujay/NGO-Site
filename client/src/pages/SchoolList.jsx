@@ -117,6 +117,14 @@ const SchoolList = () => {
               <List className="py-4">
                 <Table columns={columns} dataSource={data} />
               </List>
+              <button
+                onClick={() => {
+                  navigate("/addSchool");
+                }}
+                className="bg-purple-500 text-white font-bold p-2 w-16 rounded-lg"
+              >
+                Add School
+              </button>
             </div>
           </Content>
         </Layout>

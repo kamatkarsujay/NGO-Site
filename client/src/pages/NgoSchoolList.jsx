@@ -1,29 +1,49 @@
-import { Layout, Menu, Divider } from "antd";
+import { Typography } from "antd";
+import { Layout, Menu, Table, List } from "antd";
 import { AppstoreOutlined, BarsOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 import { Footers } from "../components/Footers";
-import ChildForm from "./ChildForm";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URI } from "../utils/helper";
 
 const { Sider, Content } = Layout;
 
-const Dashboard = () => {
+const NgoSchoolList = () => {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`${BASE_URI}/children`, {
+      const res = await axios.get(`${BASE_URI}/schools`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      setData(res.data.children);
+      setData(res.data.schools);
     };
+
     fetchData();
-  });
+  }, []);
+
+  const columns = [
+    {
+      title: "ID",
+      dataIndex: "_id",
+      key: "_id",
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Schemes",
+      dataIndex: "schemes",
+      key: "schemes",
+    },
+  ];
+
   return (
     <>
       <Navbar />
@@ -43,8 +63,8 @@ const Dashboard = () => {
             onClick={(item) => {
               navigate(item.key);
             }}
-            defaultSelectedKeys={["/dashboard"]}
-            defaultOpenKeys={["/dashboard"]}
+            defaultSelectedKeys={["/schoolList"]}
+            defaultOpenKeys={["/schoolList"]}
             items={[
               {
                 label: "Dashboard",
@@ -77,31 +97,12 @@ const Dashboard = () => {
               background: "#ffff",
             }}
           >
-            <div className="flex flex-wrap">
-              <div className="w-full lg:w-6/12 xl:w-3/12 px-4">
-                <div className="relative flex flex-col min-w-0 break-words bg-white rounded mb-6 xl:mb-0 shadow-lg">
-                  <div className="flex-auto p-4">
-                    <div className="flex flex-wrap">
-                      <div className="relative w-full pr-4 max-w-full flex-grow flex-1">
-                        <h5 className="text-blueGray-400 uppercase font-bold text-xs">
-                          Children
-                        </h5>
-                        <span className="font-semibold text-xl text-blueGray-700">
-                          {data.length}
-                        </span>
-                      </div>
-                      <div className="relative w-auto pl-4 flex-initial">
-                        <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500">
-                          <i class="fa-solid fa-children"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="lg:px-4">
+              <Typography.Text className="text-xl">School List</Typography.Text>
+              <List className="py-4">
+                <Table columns={columns} dataSource={data} />
+              </List>
             </div>
-            <Divider />
-            <ChildForm />
           </Content>
         </Layout>
       </Layout>
@@ -109,4 +110,4 @@ const Dashboard = () => {
     </>
   );
 };
-export default Dashboard;
+export default NgoSchoolList;

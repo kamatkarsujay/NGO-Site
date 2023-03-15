@@ -13,6 +13,7 @@ const router = express.Router();
 router
   .route("/admin/addSchool")
   .post(isAuthenticatedUser, authorizeRoles("admin"), addSchool);
+router.route("/schools").get(isAuthenticatedUser, getAllSchools);
 router
   .route("/admin/schools")
   .get(isAuthenticatedUser, authorizeRoles("admin"), getAllSchools);
