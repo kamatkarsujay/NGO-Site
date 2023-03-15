@@ -12,6 +12,8 @@ import AllChildList from "./pages/AllChildList";
 import NGODetails from "./pages/NGODetails";
 import SchoolList from "./pages/SchoolList";
 import SchoolDetails from "./pages/SchoolDetails";
+import NgoSchoolList from "./pages/NgoSchoolList";
+import AddSchool from "./pages/AddSchool";
 
 const App = () => {
   return (
@@ -29,7 +31,9 @@ const App = () => {
         <Route exact path="/editChild/:id" element={<AddSchemeForm />} />
         <Route exact path="/ngoDetails/:id" element={<NGODetails />} />
         <Route exact path="/schoolDetails/:id" element={<SchoolDetails />} />
+        <Route exact path="/addSchool" element={<AddSchool />} />
         <Route exact path="/adminSchoolList" element={<SchoolList />} />
+        <Route exact path="/schoolList" element={<NgoSchoolList />} />
       </Routes>
     </div>
   );
