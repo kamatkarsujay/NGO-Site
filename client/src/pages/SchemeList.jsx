@@ -12,16 +12,9 @@ const { Sider, Content } = Layout;
 
 const SchemeList = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState({});
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser.user);
-    }
-
     const fetchAdminData = async () => {
       const res = await axios.get(`${BASE_URI}/admin/schemes`, {
         headers: { "Content-Type": "application/json" },
@@ -29,11 +22,8 @@ const SchemeList = () => {
       });
       setData(res.data.scheme);
     };
-
-    if (user.role === "admin") {
-      fetchAdminData();
-    }
-  }, [user]);
+    fetchAdminData();
+  }, []);
 
   const columns = [
     {
