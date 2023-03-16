@@ -111,7 +111,7 @@ const SchoolDetails = () => {
                 key: "/adminSchoolList",
               },
               {
-                label: "School List",
+                label: "Scheme List",
                 icon: <BarsOutlined />,
                 key: "/adminSchemeList",
               },
