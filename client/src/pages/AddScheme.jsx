@@ -10,18 +10,16 @@ import { BASE_URI } from "../utils/helper";
 
 const { Sider, Content } = Layout;
 
-const AddSchool = () => {
+const AddScheme = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
-  const [schemes, setSchemes] = useState("");
 
-  const addSchool = async () => {
+  const addScheme = async () => {
     try {
       const res = await axios.post(
-        `${BASE_URI}/admin/addSchool`,
+        `${BASE_URI}/admin/addScheme`,
         {
           name,
-          schemes,
         },
         {
           headers: { "Content-Type": "application/json" },
@@ -30,8 +28,8 @@ const AddSchool = () => {
       );
 
       if (res.data) {
-        alert("School added successfully");
-        navigate("/adminSchoolList");
+        alert("Scheme added successfully");
+        navigate("/adminSchemeList");
       }
     } catch (error) {
       console.log(error);
@@ -107,24 +105,15 @@ const AddSchool = () => {
                 className="w-full mt-12 pr-8 max-w-2xl"
               >
                 <Typography.Title className="lg:ml-80 ml-24">
-                  Add School
+                  Add Scheme
                 </Typography.Title>
-                <Form.Item name="schoolName" label="School Name">
+                <Form.Item name="schemeName" label="Scheme Name">
                   <Input
                     type="text"
-                    placeholder="Enter school name"
+                    placeholder="Enter scheme name"
                     className="rounded-md border-1 border-gray-300"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                  />
-                </Form.Item>
-                <Form.Item name="scheme" label="Scheme">
-                  <Input
-                    type="text"
-                    placeholder="Enter schemes"
-                    className="rounded-md border-1 border-gray-300"
-                    value={schemes}
-                    onChange={(e) => setSchemes(e.target.value)}
                   />
                 </Form.Item>
                 <Form.Item>
@@ -132,7 +121,7 @@ const AddSchool = () => {
                     className="lg:ml-96 ml-36 bg-purple-500 rounded-xl text-white font-bold"
                     type="primary"
                     htmlType="submit"
-                    onClick={addSchool}
+                    onClick={addScheme}
                   >
                     Submit
                   </Button>
@@ -153,4 +142,4 @@ const AddSchool = () => {
     </>
   );
 };
-export default AddSchool;
+export default AddScheme;

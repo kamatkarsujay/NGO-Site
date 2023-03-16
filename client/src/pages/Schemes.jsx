@@ -9,7 +9,7 @@ import { BASE_URI } from "../utils/helper";
 
 const { Sider, Content } = Layout;
 
-const SchoolDetails = () => {
+const Schemes = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingChild, setEditingChild] = useState(null);
   const [data, setData] = useState([]);
@@ -18,7 +18,7 @@ const SchoolDetails = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`${BASE_URI}/admin/school/${params.id}`, {
+      const res = await axios.get(`${BASE_URI}/admin/scheme/${params.id}`, {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
@@ -27,18 +27,17 @@ const SchoolDetails = () => {
         },
         withCredentials: true,
       });
-      setData(res.data.school);
+      setData(res.data.scheme);
     };
     fetchData();
   }, [params.id]);
 
-  const updateSchool = async () => {
+  const updateScheme = async () => {
     try {
       const res = await axios.put(
-        `${BASE_URI}/admin/school/${params.id}`,
+        `${BASE_URI}/admin/scheme/${params.id}`,
         {
           name: editingChild.name,
-          schemes: editingChild.schemes,
         },
         {
           headers: { "Content-Type": "application/json" },
@@ -47,7 +46,7 @@ const SchoolDetails = () => {
       );
 
       if (res.data) {
-        alert("School updated successfully");
+        alert("Scheme updated successfully");
         setIsEditing(false);
         window.location.reload(false);
       }
@@ -56,14 +55,14 @@ const SchoolDetails = () => {
     }
   };
 
-  const deleteSchool = async () => {
+  const deleteScheme = async () => {
     await axios
-      .delete(`${BASE_URI}/admin/school/${params.id}`, {
+      .delete(`${BASE_URI}/admin/scheme/${params.id}`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       })
       .then((res) => {
-        navigate("/adminSchoolList");
+        navigate("/adminSchemeList");
       })
       .catch((err) => console.log(err));
   };
@@ -87,8 +86,8 @@ const SchoolDetails = () => {
             onClick={(item) => {
               navigate(item.key);
             }}
-            defaultSelectedKeys={["/adminSchoolList"]}
-            defaultOpenKeys={["/adminSchoolList"]}
+            defaultSelectedKeys={["/adminSchemeList"]}
+            defaultOpenKeys={["/adminSchemeList"]}
             items={[
               {
                 label: "Dashboard",
@@ -138,11 +137,11 @@ const SchoolDetails = () => {
                   className="w-full mt-12 pr-8 max-w-2xl"
                 >
                   <Typography.Title className="lg:ml-80 ml-24">
-                    Edit School
+                    Edit Scheme
                   </Typography.Title>
-                  <Form.Item name="schoolName" label="School Name">
+                  <Form.Item name="fullName" label="Full Name">
                     <Input
-                      placeholder="Enter school name"
+                      placeholder="Enter ngo name"
                       className="rounded-md border-1 border-gray-300"
                       defaultValue={editingChild.name}
                       onChange={(e) =>
@@ -152,25 +151,12 @@ const SchoolDetails = () => {
                       }
                     />
                   </Form.Item>
-                  <Form.Item name="schemes" label="Schemes">
-                    <Input
-                      type="text"
-                      placeholder="Enter schemes"
-                      className="rounded-md border-1 border-gray-300"
-                      defaultValue={editingChild.schemes}
-                      onChange={(e) =>
-                        setEditingChild((pre) => {
-                          return { ...pre, schemes: e.target.value };
-                        })
-                      }
-                    />
-                  </Form.Item>
                   <Form.Item>
                     <Button
                       className="lg:ml-96 ml-36 bg-purple-500 rounded-xl text-white font-bold"
                       htmlType="submit"
                       shape="round"
-                      onClick={updateSchool}
+                      onClick={updateScheme}
                     >
                       Submit
                     </Button>
@@ -187,17 +173,13 @@ const SchoolDetails = () => {
             ) : (
               <div className="bg-white p-3 shadow-sm rounded-sm">
                 <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
-                  <span className="tracking-wide">School Details</span>
+                  <span className="tracking-wide">Scheme Details</span>
                 </div>
                 <table className="table-auto">
                   <tbody>
                     <tr>
                       <td className="px-8 py-4">Name</td>
                       <td>{data.name}</td>
-                    </tr>
-                    <tr>
-                      <td className="px-8 py-4">Schemes</td>
-                      <td>{data.schemes}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -211,7 +193,7 @@ const SchoolDetails = () => {
                   Edit
                 </button>
                 <button
-                  onClick={deleteSchool}
+                  onClick={deleteScheme}
                   className="bg-red-500 text-white font-bold ml-2 p-2 w-16 rounded-lg"
                 >
                   Delete
@@ -225,4 +207,4 @@ const SchoolDetails = () => {
     </>
   );
 };
-export default SchoolDetails;
+export default Schemes;

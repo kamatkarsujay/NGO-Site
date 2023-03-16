@@ -13,6 +13,7 @@ const AddSchemeForm = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editingChild, setEditingChild] = useState(null);
   const [data, setData] = useState([]);
+  const [schemes, setSchemes] = useState([]);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -26,7 +27,16 @@ const AddSchemeForm = () => {
       });
       setData(res.data.child);
     };
+
+    const fetchSchemeData = async () => {
+      const res = await axios.get(`${BASE_URI}/admin/schemes`, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      setSchemes(res.data.scheme);
+    };
     fetchData();
+    fetchSchemeData();
   }, [params.id]);
 
   const addSchemes = async () => {
@@ -110,6 +120,11 @@ const AddSchemeForm = () => {
                 icon: <BarsOutlined />,
                 key: "/adminSchoolList",
               },
+              {
+                label: "School List",
+                icon: <BarsOutlined />,
+                key: "/adminSchemeList",
+              },
             ]}
           ></Menu>
         </Sider>
@@ -183,18 +198,13 @@ const AddSchemeForm = () => {
                         })
                       }
                     >
-                      <Select.Option value="Mid-Day Meal Scheme">
-                        Mid-Day Meal Scheme
-                      </Select.Option>
-                      <Select.Option value="Bal Swachhta Abhiyan">
-                        Bal Swachhta Abhiyan
-                      </Select.Option>
-                      <Select.Option value="ICDS Scheme">
-                        ICDS Scheme
-                      </Select.Option>
-                      <Select.Option value="RGSEAG Scheme">
-                        RGSEAG Scheme
-                      </Select.Option>
+                      {schemes.map((scheme) => {
+                        return (
+                          <Select.Option value={scheme.name}>
+                            {scheme.name}
+                          </Select.Option>
+                        );
+                      })}
                     </Select>
                   </Form.Item>
                   <Form.Item>

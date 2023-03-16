@@ -96,6 +96,11 @@ const SchoolList = () => {
                 icon: <BarsOutlined />,
                 key: "/adminSchoolList",
               },
+              {
+                label: "School List",
+                icon: <BarsOutlined />,
+                key: "/adminSchemeList",
+              },
             ]}
           ></Menu>
         </Sider>
@@ -113,7 +118,7 @@ const SchoolList = () => {
             }}
           >
             <div className="lg:px-4">
-              <Typography.Text className="text-xl">NGO List</Typography.Text>
+              <Typography.Text className="text-xl">School List</Typography.Text>
               <List className="py-4">
                 <Table columns={columns} dataSource={data} />
               </List>

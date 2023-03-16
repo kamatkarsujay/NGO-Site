@@ -1,61 +1,51 @@
-import { List, Typography } from "antd";
-import { Layout, Menu, Table } from "antd";
+import { Typography } from "antd";
+import { Layout, Menu, Table, List } from "antd";
 import { AppstoreOutlined, BarsOutlined } from "@ant-design/icons";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Navbar } from "../components/Navbar";
 import { Footers } from "../components/Footers";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { BASE_URI } from "../utils/helper";
 
 const { Sider, Content } = Layout;
 
-const AllChildList = () => {
+const SchemeList = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState({});
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser.user);
+    }
+
     const fetchAdminData = async () => {
-      const res = await axios.get(`${BASE_URI}/admin/children`, {
+      const res = await axios.get(`${BASE_URI}/admin/schemes`, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      setData(res.data.children);
+      setData(res.data.scheme);
     };
-    fetchAdminData();
-  }, []);
+
+    if (user.role === "admin") {
+      fetchAdminData();
+    }
+  }, [user]);
 
   const columns = [
     {
       title: "ID",
       dataIndex: "_id",
       key: "_id",
-      render: (text) => <Link to={`/editChild/${text}`}>{text}</Link>,
+      render: (text) => <Link to={`/schemeDetails/${text}`}>{text}</Link>,
     },
     {
       title: "Name",
       dataIndex: "name",
       key: "name",
-    },
-    {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
-    },
-    {
-      title: "gender",
-      dataIndex: "gender",
-      key: "gender",
-    },
-    {
-      title: "Schemes",
-      dataIndex: "schemes",
-      key: "schemes",
-    },
-    {
-      title: "NGO Name",
-      dataIndex: "NGOName",
-      key: "NGOName",
     },
   ];
 
@@ -78,8 +68,8 @@ const AllChildList = () => {
             onClick={(item) => {
               navigate(item.key);
             }}
-            defaultSelectedKeys={["/adminChildList"]}
-            defaultOpenKeys={["/adminChildList"]}
+            defaultSelectedKeys={["/adminSchemeList"]}
+            defaultOpenKeys={["/adminSchemeList"]}
             items={[
               {
                 label: "Dashboard",
@@ -123,10 +113,18 @@ const AllChildList = () => {
             }}
           >
             <div className="lg:px-4">
-              <Typography.Text className="text-xl">Child List</Typography.Text>
+              <Typography.Text className="text-xl">Scheme List</Typography.Text>
               <List className="py-4">
                 <Table columns={columns} dataSource={data} />
               </List>
+              <button
+                onClick={() => {
+                  navigate("/addScheme");
+                }}
+                className="bg-purple-500 text-white font-bold p-2 w-16 rounded-lg"
+              >
+                Add School
+              </button>
             </div>
           </Content>
         </Layout>
@@ -135,4 +133,4 @@ const AllChildList = () => {
     </>
   );
 };
-export default AllChildList;
+export default SchemeList;

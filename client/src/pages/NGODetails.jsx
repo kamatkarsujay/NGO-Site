@@ -111,6 +111,11 @@ const NGODetails = () => {
                 icon: <BarsOutlined />,
                 key: "/adminSchoolList",
               },
+              {
+                label: "School List",
+                icon: <BarsOutlined />,
+                key: "/adminSchemeList",
+              },
             ]}
           ></Menu>
         </Sider>
@@ -136,7 +141,7 @@ const NGODetails = () => {
                   <Typography.Title className="lg:ml-80 ml-24">
                     Edit Ngo
                   </Typography.Title>
-                  <Form.Item name="fullName" label="Full Name">
+                  <Form.Item name="ngoName" label="Ngo Name">
                     <Input
                       placeholder="Enter ngo name"
                       className="rounded-md border-1 border-gray-300"
@@ -148,7 +153,7 @@ const NGODetails = () => {
                       }
                     />
                   </Form.Item>
-                  <Form.Item name="age" label="Age">
+                  <Form.Item name="email" label="Email">
                     <Input
                       type="text"
                       placeholder="Enter ngo email"
@@ -161,7 +166,7 @@ const NGODetails = () => {
                       }
                     />
                   </Form.Item>
-                  <Form.Item name="gender" label="Gender">
+                  <Form.Item name="role" label="Role">
                     <Select
                       placeholder="Select ngo's role"
                       onChange={(value) =>
@@ -197,7 +202,7 @@ const NGODetails = () => {
             ) : (
               <div className="bg-white p-3 shadow-sm rounded-sm">
                 <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
-                  <span className="tracking-wide">Child Details</span>
+                  <span className="tracking-wide">NGO Details</span>
                 </div>
                 <table className="table-auto">
                   <tbody>
@@ -206,11 +211,11 @@ const NGODetails = () => {
                       <td>{data.name}</td>
                     </tr>
                     <tr>
-                      <td className="px-8 py-4">Age</td>
+                      <td className="px-8 py-4">Email</td>
                       <td>{data.email}</td>
                     </tr>
                     <tr>
-                      <td className="px-8 py-4">Gender</td>
+                      <td className="px-8 py-4">Role</td>
                       <td>{data.role}</td>
                     </tr>
                   </tbody>

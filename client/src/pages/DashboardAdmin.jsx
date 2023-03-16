@@ -61,6 +61,11 @@ const DashboardAdmin = () => {
       dataIndex: "schemes",
       key: "schemes",
     },
+    {
+      title: "NGO Name",
+      dataIndex: "NGOName",
+      key: "NGOName",
+    },
   ];
 
   return (
@@ -104,6 +109,11 @@ const DashboardAdmin = () => {
                 label: "School List",
                 icon: <BarsOutlined />,
                 key: "/adminSchoolList",
+              },
+              {
+                label: "School List",
+                icon: <BarsOutlined />,
+                key: "/adminSchemeList",
               },
             ]}
           ></Menu>

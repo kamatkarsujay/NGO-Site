@@ -96,6 +96,11 @@ const NGOList = () => {
                 icon: <BarsOutlined />,
                 key: "/adminSchoolList",
               },
+              {
+                label: "School List",
+                icon: <BarsOutlined />,
+                key: "/adminSchemeList",
+              },
             ]}
           ></Menu>
         </Sider>

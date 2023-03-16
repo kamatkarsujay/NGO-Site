@@ -14,6 +14,9 @@ import SchoolList from "./pages/SchoolList";
 import SchoolDetails from "./pages/SchoolDetails";
 import NgoSchoolList from "./pages/NgoSchoolList";
 import AddSchool from "./pages/AddSchool";
+import SchemeList from "./pages/SchemeList";
+import Schemes from "./pages/Schemes";
+import AddScheme from "./pages/AddScheme";
 
 const App = () => {
   return (
@@ -34,6 +37,9 @@ const App = () => {
         <Route exact path="/addSchool" element={<AddSchool />} />
         <Route exact path="/adminSchoolList" element={<SchoolList />} />
         <Route exact path="/schoolList" element={<NgoSchoolList />} />
+        <Route exact path="/adminSchemeList" element={<SchemeList />} />
+        <Route exact path="/addScheme" element={<AddScheme />} />
+        <Route exact path="/schemeDetails/:id" element={<Schemes />} />
       </Routes>
     </div>
   );

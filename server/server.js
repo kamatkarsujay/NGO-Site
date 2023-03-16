@@ -29,11 +29,13 @@ connectDatabase();
 const user = require("./routes/userRoute");
 const child = require("./routes/childRoute");
 const school = require("./routes/schoolRoute");
+const scheme = require("./routes/schemeRoute");
 const session = require("express-session");
 
 app.use("/api/v1", user);
 app.use("/api/v1", child);
 app.use("/api/v1", school);
+app.use("/api/v1", scheme);
 
 app.listen(process.env.PORT, () => {
   console.log(
