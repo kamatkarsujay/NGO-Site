@@ -123,7 +123,7 @@ const SchemeList = () => {
                 }}
                 className="bg-purple-500 text-white font-bold p-2 w-16 rounded-lg"
               >
-                Add School
+                Add Scheme
               </button>
             </div>
           </Content>
