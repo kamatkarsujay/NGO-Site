@@ -91,7 +91,7 @@ const ChildDetails = () => {
               {
                 label: "Dashboard",
                 icon: <AppstoreOutlined />,
-                key: "/dashboardAdmin",
+                key: "/dashboard",
               },
               {
                 label: "Child List",
