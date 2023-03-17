@@ -63,6 +63,10 @@ function Home() {
             </div>
           </div>
 
+          <a href="tel:9404235423" className="sticky z-30 float">
+            <i class="fa-solid fa-phone my-float"></i>
+          </a>
+
           <div className="flex flex-wrap items-center mt-32">
             <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
               <h3 className="text-3xl mb-2 font-semibold leading-normal">
