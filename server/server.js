@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const helmet = require("helmet");
 const connectDatabase = require("./config/database");
 
 process.on("uncaughtException", (err) => {
@@ -15,6 +16,7 @@ process.on("uncaughtException", (err) => {
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(helmet());
 app.use(
   cors({
     origin: "https://ngositereact.netlify.app",
