@@ -26,7 +26,7 @@ exports.getAllSchemes = catchAsyncErrors(async (req, res, next) => {
 });
 
 exports.getScheme = catchAsyncErrors(async (req, res, next) => {
-  const scheme = await Scheme.findById(req.params.id);
+  const scheme = await Scheme.findOne({ _id: new ObjectId(req.params.id) });
 
   if (!scheme) {
     return next(
