@@ -28,6 +28,12 @@ exports.getAllSchemes = catchAsyncErrors(async (req, res, next) => {
 exports.getScheme = catchAsyncErrors(async (req, res, next) => {
   const scheme = await Scheme.findById(req.params.id);
 
+  if (!scheme) {
+    return next(
+      new ErrorHander(`scheme does not exist with Id: ${req.params.id}`)
+    );
+  }
+
   res.status(200).json({
     success: true,
     scheme,
