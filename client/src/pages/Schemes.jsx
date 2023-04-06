@@ -21,9 +21,6 @@ const Schemes = () => {
       const res = await axios.get(`${BASE_URI}/admin/scheme/${params.id}`, {
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "Accept-Encoding": "gzip, deflate, sdch",
         },
         withCredentials: true,
       });
