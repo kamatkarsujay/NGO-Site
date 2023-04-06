@@ -21,8 +21,6 @@ const NGODetails = () => {
       const res = await axios.get(`${BASE_URI}/admin/user/${params.id}`, {
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
         },
         withCredentials: true,
       });
