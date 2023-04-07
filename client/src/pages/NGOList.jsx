@@ -12,16 +12,9 @@ const { Sider, Content } = Layout;
 
 const NGOList = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState({});
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const loggedInUser = localStorage.getItem("user");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser.user);
-    }
-
     const fetchAdminData = async () => {
       const res = await axios.get(`${BASE_URI}/admin/users`, {
         headers: { "Content-Type": "application/json" },
@@ -30,10 +23,8 @@ const NGOList = () => {
       setData(res.data.users);
     };
 
-    if (user.role === "admin") {
-      fetchAdminData();
-    }
-  }, [user]);
+    fetchAdminData();
+  }, []);
 
   const columns = [
     {
