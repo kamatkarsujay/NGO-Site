@@ -61,7 +61,7 @@ const ChildDetails = () => {
         withCredentials: true,
       })
       .then((res) => {
-        navigate("/adminSchoolList");
+        navigate("/adminChildList");
       })
       .catch((err) => console.log(err));
   };
