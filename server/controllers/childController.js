@@ -109,15 +109,7 @@ exports.getSingleChild = catchAsyncErrors(async (req, res, next) => {
 
 // Delete User --Admin
 exports.deleteChild = catchAsyncErrors(async (req, res, next) => {
-  const child = await Child.findById(req.params.id);
-
-  if (!child) {
-    return next(
-      new ErrorHander(`child does not exist with Id: ${req.params.id}`, 400)
-    );
-  }
-
-  await child.remove();
+  const child = await Child.deleteOne({ _id: req.params.id });
 
   res.status(200).json({
     success: true,
